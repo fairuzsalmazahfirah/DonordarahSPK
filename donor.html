@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kualifikasi Pendonor Darah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <form id="donorForm">
+        <label for="usia">Usia:</label>
+        <input type="number" id="usia" required>
+
+        <label for="beratBadan">Berat Badan (kg):</label>
+        <input type="number" id="beratBadan" required>
+
+        <label for="suhuTubuh">Suhu Tubuh (°C):</label>
+        <input type="number" id="suhuTubuh" required>
+
+        <label for="tekananDarah">Tekanan Darah:</label>
+        <input type="number" id="tekananDarah" required>
+
+        <label for="denyutNadi">Denyut Nadi:</label>
+        <input type="number" id="denyutNadi" required>
+
+        <label for="kadarHemoglobin">Kadar Hemoglobin:</label>
+        <input type="number" id="kadarHemoglobin" required>
+
+        <button type="button" onclick="kualifikasiPendonor()">Cek Kualifikasi</button>
+    </form>
+
+    <div id="hasilKualifikasi"></div>
+
+    <script>
+        function kualifikasiPendonor() {
+            var usia = parseFloat(document.getElementById("usia").value);
+            var beratBadan = parseFloat(document.getElementById("beratBadan").value);
+            var suhuTubuh = parseFloat(document.getElementById("suhuTubuh").value);
+            var tekananDarah = parseFloat(document.getElementById("tekananDarah").value);
+            var denyutNadi = parseFloat(document.getElementById("denyutNadi").value);
+            var kadarHemoglobin = parseFloat(document.getElementById("kadarHemoglobin").value);
+
+            // Algoritma weight product (sesuaikan dengan kebutuhan Anda)
+            var bobotUsia = 0.1;
+            var bobotBeratBadan = 0.2;
+            var bobotSuhuTubuh = 0.15;
+            var bobotTekananDarah = 0.2;
+            var bobotDenyutNadi = 0.15;
+            var bobotKadarHemoglobin = 0.2;
+
+            var nilaiTotal = (
+                usia * bobotUsia +
+                beratBadan * bobotBeratBadan +
+                suhuTubuh * bobotSuhuTubuh +
+                tekananDarah * bobotTekananDarah +
+                denyutNadi * bobotDenyutNadi +
+                kadarHemoglobin * bobotKadarHemoglobin
+            );
+
+            // Batas kualifikasi (sesuaikan dengan kebutuhan Anda)
+            var batasKualifikasi = 50;
+
+            // Menetapkan hasil kualifikasi
+            var hasilKualifikasi = nilaiTotal >= batasKualifikasi ? "Pendonor memenuhi kriteria kualifikasi." : "Pendonor tidak memenuhi kriteria kualifikasi.";
+
+            // Menampilkan hasil kualifikasi di halaman
+            document.getElementById("hasilKualifikasi").innerText = hasilKualifikasi;
+        }
+    </script>
+</body>
+</html>
